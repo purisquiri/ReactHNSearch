@@ -1,18 +1,20 @@
-import React from "react";
 import "./App.css";
+import Search from "./components/Search";
+import SearchHistory from "./components/SearchHistory";
 
-import { useSelector, useDispatch } from "react-redux";
-import { addSearch } from "./redux";
+//import { useSelector, useDispatch } from "react-redux";
+//import { addSearch } from "./redux";
 
-function App(props) {
-  const news = useSelector((state) => state);
+function App() {
+  //const news = useSelector((state) => state);
 
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
 
   return (
     <div className="App">
-      <h1>HN Search {news}</h1>
-      <button onClick={() => dispatch(addSearch())}>+</button>
+      <h1>HN Search </h1>
+      <SearchHistory />
+      <Search />
     </div>
   );
 }

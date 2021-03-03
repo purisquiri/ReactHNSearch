@@ -1,27 +1,32 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
-export function addSearch() {
-  return (dispatch, getState) => {
-    const currentNews = getState();
-    if (currentNews % 2 === 0) {
-      dispatch({ type: "ADD_SEARCH" });
-    } else {
-      setTimeout(() => {
-        dispatch({ type: "ADD_SEARCH" });
-      }, 1500);
-    }
+export const addSearch = (searchText, searchResults) => {
+  console.log("hi");
+  return {
+    type: "ADD_SEARCH",
+    history: searchText,
+    currentSearch: searchResults,
   };
-}
+};
 
-function reducer(news = 0, action) {
+const initialState = {
+  history: [],
+  currentSearch: [],
+};
+
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_SEARCH":
-      return news + 1;
+      return {
+        ...state,
+        history: [...state.history, action.history],
+        currentSearch: action.currentSearch,
+      };
     default:
-      return news;
+      return state;
   }
-}
+};
 
 const store = createStore(reducer, applyMiddleware(thunk));
 store.subscribe(() => console.log(store.getState()));
