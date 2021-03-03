@@ -7,7 +7,6 @@ export default function Search() {
   const dispatch = useDispatch();
   const [data, setData] = useState({ hits: [] });
   const [query, setQuery] = useState("");
-  //   const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -16,7 +15,8 @@ export default function Search() {
   const submitHandler = (e) => {
     e.preventDefault();
     fetchData();
-    addSearch();
+    dispatch(addSearch(query));
+    setQuery("");
   };
 
   const fetchData = async () => {
@@ -37,7 +37,7 @@ export default function Search() {
         />
         <button type="submit">Search</button>
       </form>
-      <ul>
+      <ul className="list">
         {data.hits.map((item) => (
           <li key={item.objectID}>
             <a href={item.url} target="_blank">

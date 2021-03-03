@@ -13,8 +13,10 @@ function App() {
   return (
     <div className="App">
       <h1>HN Search </h1>
-      <SearchHistory />
-      <Search />
+      <div className="container">
+        <Search />
+        <SearchHistory />
+      </div>
     </div>
   );
 }

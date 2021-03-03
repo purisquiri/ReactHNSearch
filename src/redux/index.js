@@ -1,33 +1,32 @@
 import { createStore, applyMiddleware } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
-export const addSearch = (searchText, searchResults) => {
-  console.log("hi");
+export const addSearch = (searchText) => {
+  console.log(searchText);
   return {
     type: "ADD_SEARCH",
-    history: searchText,
-    currentSearch: searchResults,
+    payload: searchText,
   };
 };
 
 const initialState = {
   history: [],
-  currentSearch: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_SEARCH":
+      console.log("hey");
       return {
         ...state,
-        history: [...state.history, action.history],
-        currentSearch: action.currentSearch,
+        history: [action.payload, ...state.history],
       };
     default:
       return state;
   }
 };
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 store.subscribe(() => console.log(store.getState()));
 export default store;
