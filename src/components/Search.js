@@ -21,7 +21,7 @@ export default function Search() {
 
   const fetchData = async () => {
     const result = await axios(
-      `http://hn.algolia.com/api/v1/search?query=${query}`
+      `https://hn.algolia.com/api/v1/search?query=${query}`
     );
     setData(result.data);
   };
