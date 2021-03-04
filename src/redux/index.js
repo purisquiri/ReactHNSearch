@@ -3,7 +3,6 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 export const addSearch = (searchText) => {
-  console.log(searchText);
   return {
     type: "ADD_SEARCH",
     payload: searchText,
@@ -17,7 +16,6 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_SEARCH":
-      console.log("hey");
       return {
         ...state,
         history: [action.payload, ...state.history],
